@@ -3,125 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张雅婷 | 运营个人简历</title>
+    <title>张雅婷 | 个人简历</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
-        body { font-family: 'Lexend', 'PingFang SC', sans-serif; overflow-x: hidden; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        .gradient-text { background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* 核心视觉与字体设定 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary-pink: #F8C8DC;
+            --soft-pink-bg: #FFF5F8;
+            --text-dark: #333333;
+            --text-gray: #4F4F4F;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'Helvetica Neue', sans-serif; 
+            background-color: #FAFAFA;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* 呼吸感卡片 */
+        .content-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(248, 200, 220, 0.15);
+            transition: all 0.3s ease;
+        }
+        .content-card:hover {
+            box-shadow: 0 8px 30px rgba(248, 200, 220, 0.25);
+        }
+
+        /* 左侧固定的导航栏 */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: #FFFFFF;
+            border-right: 1px solid #F1F1F1;
+            padding: 40px 30px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 头像粉色光晕 */
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary-pink);
+            box-shadow: 0 0 15px rgba(248, 200, 220, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .nav-item {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-gray);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .nav-item:hover {
+            background-color: var(--soft-pink-bg);
+            color: #d17a9d;
+        }
+
+        /* 右侧滚动区 */
+        .main-content {
+            margin-left: 300px;
+            padding: 60px 80px;
+            max-width: 1000px;
+        }
+
+        .highlight-pink {
+            background: linear-gradient(to bottom, transparent 60%, var(--primary-pink) 0);
+            font-weight: 600;
+        }
+
+        /* 针对移动端的适配 */
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #F1F1F1; }
+            .main-content { margin-left: 0; padding: 30px 20px; }
+        }
     </style>
 </head>
-<body class="bg-[#fcfcfd]">
+<body>
 
-    <nav class="fixed w-full z-50 glass-nav border-b border-slate-100">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-xl tracking-tighter">YATING<span class="text-blue-600">.</span></span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#intern" class="hover:text-blue-600 transition">实习经历</a>
-                <a href="#skills" class="hover:text-blue-600 transition">核心技能</a>
-                <a href="#edu" class="hover:text-blue-600 transition">教育背景</a>
+    <aside class="sidebar">
+        <div class="avatar-container">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200" alt="张雅婷" class="w-full h-full object-cover">
+        </div>
+        <h1 class="text-2xl font-bold mb-2">张雅婷</h1>
+        <p class="text-xs text-slate-400 mb-8 text-center uppercase tracking-widest leading-loose">运营求职 · 2026届毕业生</p>
+        
+        <nav class="w-full mb-10">
+            <a href="#edu" class="nav-item block">教育背景</a>
+            <a href="#intern" class="nav-item block">实习经历</a>
+            <a href="#social" class="nav-item block">自媒体/项目</a>
+            <a href="#interest" class="nav-item block">兴趣爱好</a>
+            <a href="#contact" class="nav-item block">联系方式</a>
+        </nav>
+
+        <div class="mt-auto text-sm text-slate-400 space-y-2">
+            <p class="hover:text-pink-400 transition cursor-pointer">📧 zhangyating@email.com</p>
+            <p class="hover:text-pink-400 transition cursor-pointer">🔗 GitHub: zhangyt811</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        
+        <section id="edu" class="content-card">
+            <h2 class="text-xl font-bold mb-6 border-b-2 border-[#F8C8DC] inline-block pb-1">教育背景</h2>
+            <div class="space-y-4">
+                <p><b>2022.09 - 2026.07</b> | <b>XX大学 (211)</b> | <b>XX专业</b></p>
+                <p class="text-slate-600 text-sm italic">主修课程：市场营销、数据分析、新媒体传播等...</p>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <section class="pt-40 pb-24 px-6 text-center">
-        <div data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="text-blue-600 font-bold tracking-widest text-sm mb-4">2026届 · 运营管培生求职</h2>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
-                你好，我是张雅婷<br>
-                <span class="gradient-text">用创意驱动增长。</span>
-            </h1>
-            <p class="text-slate-500 text-lg max-w-xl mx-auto mb-10">
-                擅长公众号矩阵运营，具备千万级项目协助经验。不仅懂内容，更懂如何用数据讲故事。
-            </p>
-            <a href="mailto:zhangyating@email.com" class="bg-black text-white px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform inline-block">和我聊聊</a>
-        </div>
-    </section>
-
-    <section id="intern" class="py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold mb-12 flex items-center" data-aos="fade-right">
-                <span class="text-blue-600 mr-2">01.</span> 实习经历 Internship
-            </h3>
-            
-            <div class="space-y-12">
-                <div class="group relative pl-8 border-l-2 border-slate-100 pb-4" data-aos="fade-up">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-600 rounded-full ring-4 ring-blue-50"></div>
-                    <div class="flex flex-wrap justify-between items-start mb-4">
-                        <div>
-                            <h4 class="text-xl font-bold group-hover:text-blue-600 transition">shopee</h4>
-                            <p class="text-slate-400">商务运营实习生</p>
-                        </div>
-                        <span class="text-slate-400 text-sm">2025.02 - 2025.06</span>
-                    </div>
-                    <ul class="text-slate-600 space-y-3 list-disc ml-4">
-                        <li>主导某大促节点内容策划，单周涨粉 <span class="font-bold text-slate-900">2000+</span>。</li>
-                        <li>独立撰写 10w+ 爆款文案，复盘数据并建立内容标准 SOP。</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-20 px-6 bg-slate-50">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold mb-12 flex items-center" data-aos="fade-right">
-                <span class="text-blue-600 mr-2">02.</span> 核心技能 Skills
-            </h3>
-            
-            <div class="grid md:grid-cols-2 gap-10">
-                <div data-aos="zoom-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="font-bold">内容策划与文案</span>
-                        <span class="text-blue-600">90%</span>
-                    </div>
-                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-blue-600 h-full rounded-full w-[90%] animate-pulse"></div>
-                    </div>
-                </div>
-                <div data-aos="zoom-in" data-aos-delay="100">
-                    <div class="flex justify-between mb-2">
-                        <span class="font-bold">数据分析 (SQL/Excel)</span>
-                        <span class="text-blue-600">85%</span>
-                    </div>
-                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-blue-600 h-full rounded-full w-[85%]"></div>
+        <section id="intern" class="content-card">
+            <h2 class="text-xl font-bold mb-6 border-b-2 border-[#F8C8DC] inline-block pb-1">实习经历</h2>
+            <div class="space-y-8">
+                <div class="border-l-2 border-pink-100 pl-6">
+                    <p class="text-sm text-pink-400 font-bold">2025.06 - 2025.12</p>
+                    <h3 class="font-bold text-lg">腾讯科技 · 内容运营实习生</h3>
+                    <p class="text-slate-600 mt-2">在这里原样粘贴你 PDF 里的文字内容...</p>
+                    <div class="mt-4 rounded-xl overflow-hidden bg-slate-100 h-48 flex items-center justify-center text-slate-400 italic text-sm">
+                        [此处将显示你文档中对应的照片]
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="edu" class="py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold mb-12 flex items-center" data-aos="fade-right">
-                <span class="text-blue-600 mr-2">03.</span> 教育背景 Education
-            </h3>
-            <div class="flex flex-wrap justify-between items-center p-8 border border-slate-100 rounded-3xl" data-aos="flip-up">
-                <div class="flex items-center space-x-6">
-                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-2xl">🎓</div>
-                    <div>
-                        <h4 class="text-xl font-bold">985 重点大学</h4>
-                        <p class="text-slate-500">经济学学 / 硕士学位</p>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <p class="font-bold text-slate-900">GPA 3.8/4.0</p>
-                    <p class="text-slate-400 text-sm italic">2022 - 2026</p>
-                </div>
+        <section id="social" class="content-card">
+            <h2 class="text-xl font-bold mb-6 border-b-2 border-[#F8C8DC] inline-block pb-1">自媒体/项目实践</h2>
+            <p class="text-slate-600">原样保留你文档中关于小红书、公众号运营的每一个文字...</p>
+        </section>
+
+        <footer id="contact" class="text-center py-10">
+            <div class="inline-block px-10 py-4 bg-white rounded-2xl shadow-sm border border-pink-100">
+                <p class="text-slate-500 text-sm mb-2">期待与您的团队共同开启新篇章</p>
+                <p class="font-bold text-pink-400">zhangyating@email.com</p>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <footer class="py-12 text-center text-slate-400 text-sm">
-        <p>© 2026 张雅婷 Yating. All Rights Reserved.</p>
-    </footer>
+    </main>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true }); // 初始化动画，只播放一次
-    </script>
 </body>
 </html>
