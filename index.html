@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张雅婷 | 个人作品集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-[#fafafa] text-[#1a1a1a] leading-relaxed">
+
+    <nav class="fixed w-full z-50 glass border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold tracking-tighter text-xl">ZYT.</span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-blue-600 transition">关于</a>
+                <a href="#projects" class="hover:text-blue-600 transition">项目</a>
+                <a href="#contact" class="hover:text-blue-600 transition">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold mb-6">
+                正在寻找 品牌策划/视觉设计 机会
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
+                你好，我是张雅婷。
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-500 max-w-3xl mb-10 leading-relaxed">
+                我擅长将复杂的商业需求转化为直观、动人的视觉语言。通过品牌策略与创意设计，为用户打造卓越的数字体验。
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#" class="bg-black text-white px-8 py-4 rounded-xl font-medium hover:bg-gray-800 transition shadow-lg shadow-black/10">
+                    下载简历 (PDF)
+                </a>
+                <a href="#contact" class="bg-white border border-gray-200 px-8 py-4 rounded-xl font-medium hover:border-gray-400 transition">
+                    在线联系
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 italic">精选项目 / Selected Projects</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="group cursor-pointer">
+                    <div class="aspect-video bg-gray-100 rounded-2xl mb-6 overflow-hidden border border-gray-100">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition duration-500">
+                            [ 项目 A 预览图 ]
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-600 transition">品牌重塑：Urban Flow</h3>
+                    <p class="text-gray-500">为潮流零售品牌打造全新的视觉识别系统与线上商城界面。</p>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-video bg-gray-100 rounded-2xl mb-6 overflow-hidden border border-gray-100">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition duration-500">
+                            [ 项目 B 预览图 ]
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-600 transition">交互设计：Echo App</h3>
+                    <p class="text-gray-500">一款专注于情感社交的移动端应用 UI/UX 设计方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 px-6 border-t border-gray-100">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">准备好聊聊了吗？</h2>
+            <p class="text-gray-500 mb-10">欢迎通过邮件或微信与我联系，期待合作。</p>
+            <a href="mailto:your-email@example.com" class="text-2xl font-semibold underline hover:text-blue-600 transition">
+                zhangyating@email.com
+            </a>
+            <div class="mt-20 text-sm text-gray-400">
+                © 2026 Zhang Yating. Built with Love & Vercel.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
