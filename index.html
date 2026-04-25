@@ -12,60 +12,27 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAFAFA; color: #333; overflow-x: hidden; }
 
-        /* 侧边栏 */
-        .sidebar { width: 300px; height: 100vh; position: fixed; left: 0; top: 0; background: #FFF; border-right: 1px solid #F3F4F6; z-index: 100; display: flex; flex-direction: column; align-items: center; }
-        
-        /* 线条小女孩形象动画 */
-        .character-box { position: relative; margin-top: 20px; animation: floating 3s ease-in-out infinite; }
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* 旁白气泡 */
-        .bubble {
-            position: absolute; right: -40px; top: -10px;
-            background: var(--soft-pink-bg); color: #d17a9d;
-            padding: 4px 10px; border-radius: 12px 12px 12px 0;
-            font-size: 10px; font-weight: bold; border: 1px solid var(--primary-pink);
-            box-shadow: 2px 2px 10px rgba(248, 200, 220, 0.3);
-        }
-
-        .nav-link { position: relative; transition: all 0.3s ease; }
-        .nav-link.active { color: #d17a9d; font-weight: 700; transform: translateX(5px); }
-        .nav-link.active::before { content: ''; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); width: 4px; height: 15px; background: var(--primary-pink); border-radius: 2px; }
-
-        .main-content { margin-left: 300px; padding: 60px 5%; max-width: 1100px; }
-        .glass-card { 
-            background: #FFF; border-radius: 20px; padding: 30px; 
-            box-shadow: 0 10px 30px rgba(248, 200, 220, 0.1); 
-            margin-bottom: 25px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border: 1px solid transparent;
-        }
-        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(248, 200, 220, 0.25); border-color: var(--primary-pink); }
-
-        .marker { background: linear-gradient(100deg, rgba(248,200,220,0) 0%, rgba(248,200,220,0.8) 50%, rgba(248,200,220,0) 100%); background-size: 200% 100%; animation: highlight 3s infinite linear; padding: 0 4px; font-weight: 700; }
-        @keyframes highlight { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
-        
-        .pink-tag { background: var(--soft-pink-bg); color: #d17a9d; padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; display: inline-block; margin: 4px; }
-        .badge-national { background: linear-gradient(90deg, #FFD1DC, #F8C8DC); color: #FFF; padding: 2px 10px; border-radius: 4px; font-size: 10px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
-
-        @media (max-width: 768px) { .sidebar { position: relative; width: 100%; height: auto; } .main-content { margin-left: 0; } .character-box { display: none; } }
-    </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张雅婷 | 运营个人作品集</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-        :root { --primary-pink: #F8C8DC; --soft-pink-bg: #FFF5F8; --accent-pink: #FFD1DC; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAFAFA; color: #333; overflow-x: hidden; }
-
+        /* 侧边栏基础样式 */
         .sidebar { width: 300px; height: 100vh; position: fixed; left: 0; top: 0; background: #FFF; border-right: 1px solid #F3F4F6; z-index: 100; transition: all 0.3s; }
+        
+        /* --- 线条小女孩形象核心样式 --- */
+        .character-container { position: relative; margin-top: 30px; margin-bottom: 10px; }
+        .character-svg { animation: floating 3s ease-in-out infinite; width: 80px; height: 80px; }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .bubble {
+            position: absolute; right: -35px; top: -5px;
+            background: var(--soft-pink-bg); color: #d17a9d;
+            padding: 4px 12px; border-radius: 15px 15px 15px 0;
+            font-size: 11px; font-weight: 800; border: 1.5px solid var(--primary-pink);
+            box-shadow: 4px 4px 0px rgba(248, 200, 220, 0.2);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        /* -------------------------- */
+
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link.active { color: #d17a9d; font-weight: 700; transform: translateX(5px); }
         .nav-link.active::before { content: ''; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); width: 4px; height: 15px; background: var(--primary-pink); border-radius: 2px; }
@@ -78,9 +45,6 @@
             border: 1px solid transparent;
         }
         .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(248, 200, 220, 0.25); border-color: var(--primary-pink); }
-
-        .pink-tag { background: var(--soft-pink-bg); color: #d17a9d; padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; display: inline-block; margin: 4px; transition: 0.3s; }
-        .pink-tag:hover { background: var(--primary-pink); color: white; transform: rotate(-2deg); }
 
         .marker {
             background: linear-gradient(100deg, rgba(248,200,220,0) 0%, rgba(248,200,220,0.8) 50%, rgba(248,200,220,0) 100%);
@@ -88,19 +52,34 @@
         }
         @keyframes highlight { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
+        .pink-tag { background: var(--soft-pink-bg); color: #d17a9d; padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; display: inline-block; margin: 4px; transition: 0.3s; }
         .badge-national { background: linear-gradient(90deg, #FFD1DC, #F8C8DC); color: #FFF; padding: 2px 10px; border-radius: 4px; font-size: 10px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
 
-        @media (max-width: 768px) { .sidebar { position: relative; width: 100%; height: auto; } .main-content { margin-left: 0; } }
+        @media (max-width: 768px) { .sidebar { position: relative; width: 100%; height: auto; } .main-content { margin-left: 0; } .character-container { display: none; } }
     </style>
 </head>
 <body>
 
     <aside class="sidebar p-10 flex flex-col items-center text-center">
-        <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--primary-pink)] shadow-lg mb-6 group cursor-pointer">
+        <div class="character-container">
+            <div class="bubble">Hello!</div>
+            <svg class="character-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 25C38 25 30 33 30 45C30 55 38 63 50 63C62 63 70 55 70 45C70 33 62 25 50 25Z" stroke="#F8C8DC" stroke-width="2.5"/>
+                <path d="M32 38C32 38 38 30 50 30C62 30 68 38 68 38" stroke="#F8C8DC" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="43" cy="45" r="2" fill="#333"/>
+                <circle cx="57" cy="45" r="2" fill="#333"/>
+                <circle cx="38" cy="52" r="3" fill="#FFF5F8"/>
+                <circle cx="62" cy="52" r="3" fill="#FFF5F8"/>
+                <path d="M40 63L35 85M60 63L65 85" stroke="#F8C8DC" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M42 70H58" stroke="#F8C8DC" stroke-width="2" stroke-dasharray="4 2"/>
+            </svg>
+        </div>
+
+        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-[var(--primary-pink)] shadow-lg mb-6 group cursor-pointer">
             <img src="https://via.placeholder.com/150" alt="Avatar" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
         </div>
         <h1 class="text-xl font-bold tracking-tight">张雅婷</h1>
-        <p class="text-xs text-gray-400 mt-2 mb-10">吉林大学 · 经济学硕士<br>2026 届毕业生</p>
+        <p class="text-xs text-gray-400 mt-2 mb-10 leading-relaxed">吉林大学 · 经济学硕士<br>2026 届毕业生</p>
         
         <nav id="sidebar-nav" class="w-full space-y-4">
             <a href="#edu" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400">教育背景</a>
@@ -121,7 +100,7 @@
                     <div class="text-3xl animate-bounce">🎓</div>
                     <div>
                         <h4 class="text-lg font-bold text-slate-800">吉林大学</h4>
-                        <p class="text-slate-500 text-sm italic">硕士学位 · 经济学 (研一在读)</p>
+                        <p class="text-slate-500 text-sm italic">硕士学位 · 经济学</p>
                     </div>
                 </div>
                 <div class="text-right text-slate-400 text-sm italic">2023.09 - 2026.06</div>
@@ -140,8 +119,8 @@
                         <span class="text-gray-400 text-xs italic">2025.02 - 2025.06</span>
                     </div>
                     <ul class="text-sm text-gray-600 space-y-4 list-disc ml-4">
-                        <li><b>履约流程优化：</b>记录 37 项问题台账，优化协作文档，缩短平均配送周期 <span class="marker">5.6%</span>。</li>
-                        <li><b>活动策略落地：</b>完成 3.2 万用户 RFM 标签打标，撰写红包规则，提升新客留存 <span class="marker">6.2pp</span>。</li>
+                        <li><b>履约流程优化：</b>缩短平均配送周期 <span class="marker">5.6%</span>。</li>
+                        <li><b>活动策略落地：</b>RFM 标签打标，提升新客留存 <span class="marker">6.2pp</span>。</li>
                     </ul>
                 </div>
 
@@ -151,8 +130,7 @@
                         <span class="text-gray-400 text-xs italic">2024.11 - 2025.05</span>
                     </div>
                     <ul class="text-sm text-gray-600 space-y-4 list-disc ml-4">
-                        <li><b>渠道资源对接：</b>高效对接 TikTok 达人合作，通过精准排期确保资源零延期交付。</li>
-                        <li><b>效果数据分析：</b>负责 10 万级用户数据监控，投放精准度由 48% 提升至 <span class="marker">58.6%</span>。</li>
+                        <li><b>效果数据分析：</b>投放精准度由 48% 提升至 <span class="marker">58.6%</span>。</li>
                     </ul>
                 </div>
 
@@ -162,8 +140,8 @@
                         <span class="text-gray-400 text-xs italic">2024.06 - 2024.08</span>
                     </div>
                     <ul class="text-sm text-gray-600 space-y-4 list-disc ml-4">
-                        <li><b>分层诊断：</b>负责 4 层用户画像清洗，定位新手引导中断断点，方案落地后次月 <span class="marker">NPS 提升 12 分</span>。</li>
-                        <li><b>框架输出：</b>总结“分层-诊断-验证”执行框架供团队参考，显著提升协作效率。</li>
+                        <li><b>分层诊断：</b>方案落地后次月 <span class="marker">NPS 提升 12 分</span>。</li>
+                        <li><b>框架输出：</b>总结“分层-诊断-验证”框架。</li>
                     </ul>
                 </div>
             </div>
@@ -173,24 +151,17 @@
             <h2 class="text-2xl font-bold mb-8 flex items-center" data-aos="fade-right">
                 <span class="w-2 h-8 bg-[var(--primary-pink)] mr-3 rounded-full"></span> 项目经历 Projects
             </h2>
-            
             <div class="space-y-8">
                 <div class="glass-card border-l-4 border-pink-200" data-aos="zoom-in-up">
                     <h3 class="font-bold flex items-center text-lg text-slate-800">
-                        国家级科研项目：涉农企业数字化转型研究
-                        <span class="badge-national animate-pulse">国家级</span>
+                        国家级科研项目：涉农企业数字化转型研究 <span class="badge-national animate-pulse">国家级</span>
                     </h3>
-                    <p class="text-[10px] text-pink-400 mt-2 font-bold uppercase tracking-widest">Python｜NLP文本挖掘｜指标体系构建</p>
-                    <p class="text-sm text-gray-500 mt-4 leading-relaxed bg-slate-50/50 p-4 rounded-lg italic">
-                        负责 200+ 家 A 股企业年报 NLP 文本清洗，协助构建 3 维 20+ 项评估指标体系，输出 2 份核心业务简报。
-                    </p>
+                    <p class="text-sm text-gray-500 mt-4 italic">负责 200+ 家企业年报 NLP 文本清洗。</p>
                 </div>
-
                 <div class="glass-card border-l-4 border-slate-200" data-aos="zoom-in-up">
                     <h3 class="font-bold text-lg text-slate-800">“盈泰杯·宝洁”商业挑战赛</h3>
-                    <p class="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-widest">RFM分层 | 私域运营 SOP | 转化链路设计</p>
                     <p class="text-sm text-gray-600 mt-4 leading-relaxed">
-                        设计“内容引流→私域沉淀→分层转化”路径，验证期社群转化率达 <span class="marker">18.5%</span>，独立输出《私域活动执行手册》。
+                        社群转化率达 <span class="marker">18.5%</span>，独立输出执行手册。
                     </p>
                 </div>
             </div>
@@ -202,13 +173,13 @@
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass-card">
-                    <h3 class="font-bold text-gray-700 mb-6 text-sm flex items-center">🛠 运营工具链</h3>
+                    <h3 class="font-bold text-gray-700 mb-6 text-sm">🛠 运营工具链</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="pink-tag">SQL / Python</span> <span class="pink-tag">Excel / 数据可视化</span> <span class="pink-tag">PS / 秀米排版</span>
                     </div>
                 </div>
                 <div class="glass-card">
-                    <h3 class="font-bold text-gray-700 mb-6 text-sm flex items-center">🧠 运营思维</h3>
+                    <h3 class="font-bold text-gray-700 mb-6 text-sm">🧠 运营思维</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="pink-tag">用户分层运营</span> <span class="pink-tag">增长黑客逻辑</span> <span class="pink-tag">私域 SOP 沉淀</span>
                     </div>
@@ -231,7 +202,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: false, offset: 100 });
-        
         window.addEventListener('scroll', () => {
             let current = "";
             const sections = document.querySelectorAll("section");
