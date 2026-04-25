@@ -3,87 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YATING | 雅婷的互动数字画布</title>
+    <title>YATING | 雅婷的全量作品集</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 1. 引入手写艺术字体 */
-        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bad+Script&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bad+Script&family=Noto+Sans+SC:wght@400;500;700&display=swap');
         
-        :root {
-            --primary-pink: #F8C8DC;
-            --soft-pink: #FFF5F8;
-            --accent-pink: #FFD1DC;
-            --doodle-text: #2d3436;
-        }
+        :root { --primary-pink: #F8C8DC; --text-dark: #3d3d3d; }
 
-        /* 全局样式与背景画布网格 */
         body {
-            font-family: 'Bad Script', cursive; /* 全局使用手写 Bad Script */
+            font-family: 'Bad Script', cursive; 
             background-color: #fafbfc;
-            background-image: radial-gradient(#f8c8dc44 1.5px, transparent 1.5px);
-            background-size: 35px 35px;
-            color: var(--doodle-text);
-            margin: 0;
-            overflow-x: hidden;
+            background-image: radial-gradient(#f8c8dc33 1.2px, transparent 1.2px);
+            background-size: 30px 30px;
+            color: var(--text-dark);
         }
 
-        /* 标题和强调字使用更具个性的 Permanent Marker */
-        h1, h2, h3, h4, .doodle-head { font-family: 'Permanent Marker', cursive; tracking: 0.1em; }
+        /* 字体分配：公司名和内容使用 Noto Sans SC 确保清晰 */
+        .content-font { font-family: 'Noto Sans SC', sans-serif !important; }
+        .handwriting-font { font-family: 'Permanent Marker', cursive; }
 
-        /* 左侧固定的侧边栏 */
-        .sidebar { width: 300px; height: 100vh; position: fixed; left: 0; top: 0; background: #FFF; border-right: 1px solid #F3F4F6; z-index: 100; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+        .sidebar { width: 280px; height: 100vh; position: fixed; left: 0; top: 0; background: #FFF; border-right: 1px solid #f0f0f0; padding: 40px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+        .canvas-main { margin-left: 280px; padding: 60px 8%; max-width: 1100px; }
 
-        /* 线条小女孩形象区 */
-        .character-box { position: relative; margin-top: 20px; animation: floating 3s ease-in-out infinite; }
-        @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        .bubble {
-            position: absolute; right: -45px; top: -15px;
-            background: var(--soft-pink); color: #d17a9d;
-            padding: 4px 10px; border-radius: 12px 12px 12px 0;
-            font-size: 11px; font-weight: bold; border: 1.5px solid var(--primary-pink);
-            box-shadow: 2px 2px 10px rgba(248, 200, 220, 0.3);
+        /* 卡片设计 */
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1.5px solid #f3f4f6;
+            border-radius: 28px; padding: 35px; margin-bottom: 35px;
+            transition: all 0.3s ease;
         }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary-pink); box-shadow: 0 20px 40px rgba(248, 200, 220, 0.1); }
+        
+        /* 浅色项目卡片 */
+        .light-card { background: linear-gradient(to bottom right, #ffffff, #fffcfd); border: 2px dashed var(--primary-pink); }
 
-        /* 右侧涂鸦画布区 */
-        .canvas-main { margin-left: 300px; padding: 60px 8%; max-width: 1200px; }
+        .marker { background: #fffde7; padding: 0 2px; font-weight: 700; border-bottom: 2.5px solid var(--primary-pink); }
+        .pink-tag { background: #fff5f8; color: #d17a9d; border: 1px solid #f8c8dc; padding: 4px 14px; border-radius: 12px; font-size: 11px; font-weight: 700; margin-right: 8px; display: inline-block; }
 
-        /* 画布卡片核心样式：错落、涂鸦感 */
-        .doodle-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(248, 200, 220, 0.4);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性悬浮 */
-            position: relative;
-        }
-        .doodle-card:hover {
-            transform: translateY(-5px) rotate(1deg) scale(1.01);
-            border-color: var(--primary-pink);
-            box-shadow: 0 10px 30px rgba(248, 200, 220, 0.2);
-        }
-
-        /* 标签小涂鸦 */
-        .pink-tag {
-            background: #fff;
-            color: #d17a9d;
-            border: 1px solid #f8c8dc;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 700;
-            margin: 4px;
-            display: inline-block;
-            transition: 0.3s;
-        }
-        .doodle-card:hover .pink-tag { transform: scale(1.1) rotate(-3deg); }
-
-        /* 章节标题涂鸦效果 */
-        .section-header { font-size: 11px; color: #ddd; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 3rem; display: flex; items-center: center; font-weight: 800; }
+        .section-header { font-size: 11px; color: #cbd5e0; letter-spacing: 0.3em; margin-bottom: 2rem; display: flex; align-items: center; font-weight: 900; }
         .section-header::after { content: ""; flex: 1; height: 1px; background: #eee; margin-left: 20px; }
-
-        /* 荧光笔高亮划线 */
-        .marker { background: #fffde7; padding: 0 4px; font-weight: 700; border-bottom: 2px solid #f8c8dc; }
 
         @media (max-width: 1024px) { .sidebar { position: relative; width: 100%; height: auto; } .canvas-main { margin-left: 0; } }
     </style>
@@ -91,112 +49,104 @@
 <body>
 
     <aside class="sidebar">
-        <div class="character-box mb-6">
-            <div class="bubble doodle-head">Thinking!</div>
-            <svg class="character-svg" width="80" height="80" viewBox="0 0 100 100" fill="none">
-                <path d="M50 25C38 25 30 33 30 45C30 55 38 63 50 63C62 63 70 55 70 45C70 33 62 25 50 25Z" stroke="#F8C8DC" stroke-width="2"/>
-                <circle cx="43" cy="45" r="2" fill="#333"/><circle cx="57" cy="45" r="2" fill="#333"/>
-                <path d="M40 63L35 85M60 63L65 85" stroke="#F8C8DC" stroke-width="2" stroke-linecap="round"/>
+        <div class="mb-8">
+            <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
+                <path d="M50 25C38 25 30 33 30 45C30 55 38 63 50 63C62 63 70 55 70 45C70 33 62 25 50 25Z" stroke="#F8C8DC" stroke-width="2.5"/>
+                <circle cx="43" cy="45" r="2.5" fill="#333"/><circle cx="57" cy="45" r="2.5" fill="#333"/>
+                <path d="M40 63L35 85M60 63L65 85" stroke="#F8C8DC" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
         </div>
-        <div class="w-16 h-16 rounded-full border-2 border-[var(--primary-pink)] shadow-md mb-6 overflow-hidden rotate-[-5deg]">
-            <img src="https://via.placeholder.com/150" alt="Avatar" class="w-full h-full object-cover">
+        <h1 class="text-2xl handwriting-font">Zhang Yating</h1>
+        <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest text-center">Economics · Growth · Logic</p>
+        <div class="mt-16 w-full space-y-8 text-center text-gray-300 font-black text-xs">
+            <a href="#how" class="block hover:text-pink-400 transition tracking-tighter">01. HOW I WORK</a>
+            <a href="#intern" class="block hover:text-pink-400 transition tracking-tighter">02. INTERNSHIPS</a>
+            <a href="#projects" class="block hover:text-pink-400 transition tracking-tighter">03. PROJECTS</a>
         </div>
-        <h1 class="text-xl font-bold">张雅婷</h1>
-        <p class="text-[10px] text-gray-400 font-bold mt-2 mb-10 tracking-widest uppercase text-center">Economics · JLU 2026</p>
-        
-        <nav class="w-full space-y-6 text-center text-gray-400 font-bold">
-            <a href="#edu" class="block text-xs hover:text-pink-400 transition">EDUCATION.</a>
-            <a href="#intern" class="block text-xs hover:text-pink-400 transition">INTERNSHIP.</a>
-            <a href="#projects" class="block text-xs hover:text-pink-400 transition">PROJECTS.</a>
-            <a href="#skills" class="block text-xs hover:text-pink-400 transition">CONTACT.</a>
-        </nav>
     </aside>
 
     <main class="canvas-main">
-        <header class="mb-24">
-            <p class="text-pink-300 font-bold tracking-widest mb-2 doodle-head"># 2026 运营作品集 V6.0</p>
-            <h2 class="text-5xl font-black leading-tight doodle-head">用数据驱动增长，<br><span class="text-pink-300MarkermarkerHighlightMarkerHighlightMarker">以审美定义运营。</span></h2>
+        <header class="mb-20">
+            <h2 class="text-6xl handwriting-font leading-tight">Think Deep,<br><span class="text-pink-300">Act Fast.</span></h2>
         </header>
 
-        <section id="edu" class="mb-20">
-            <div class="section-header">Education Background</div>
-            <div class="doodle-card flex justify-between items-center rotate-[2deg]">
-                <div class="flex items-center space-x-6">
-                    <div class="text-3xl animate-bounce">🎓</div>
-                    <div><h4 class="text-lg font-bold">吉林大学</h4><p class="text-gray-500 text-sm italic">硕士学位 · 经济学 (研一在读)</p></div>
+        <section id="how" class="mb-24">
+            <div class="section-header">How I Work</div>
+            <div class="card border-pink-50 bg-pink-50/10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 content-font">
+                    <div class="border-l-4 border-pink-200 pl-6">
+                        <h4 class="font-bold text-lg mb-2">数据驱动的全局观</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">不盲目执行，习惯从数据底表中通过 RFM 等模型拆解用户价值，建立“预测-执行-反馈”的闭环。</p>
+                    </div>
+                    <div class="border-l-4 border-pink-200 pl-6">
+                        <h4 class="font-bold text-lg mb-2">SOP 化运营逻辑</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">重视经验资产化，独立输出多份标准化执行手册。确保在复杂的协作环境中，效率能随规模增长而提升。</p>
+                    </div>
                 </div>
-                <div class="text-right text-gray-400 text-sm italic font-mono">2023.09 - 2026.06</div>
             </div>
         </section>
 
         <section id="intern" class="mb-24">
             <div class="section-header">Internship Experience</div>
-            <div class="space-y-10">
-                <div class="doodle-card">
-                    <div class="flex justify-between mb-6">
-                        <h4 class="text-lg font-bold text-pink-400 italic flex items-center">Shopee <span class="ml-2 text-gray-300 text-xs font-normal">/ 商务运营</span></h4>
-                        <span class="text-gray-400 text-xs italic font-mono">25.02 - 25.06</span>
-                    </div>
-                    <ul class="text-sm text-gray-600 space-y-4 ml-4 list-disc">
-                        <li>缩短平均配送周期 <span class="marker">5.6%</span>。</li>
-                        <li>完成 3.2w 用户 <span class="font-bold">RFM 标签打标</span>，新客留存提升 <span class="marker">6.2pp</span>。</li>
-                    </ul>
+            
+            <div class="card">
+                <div class="flex flex-col md:flex-row justify-between mb-8">
+                    <h4 class="text-2xl font-bold content-font">Shopee <span class="text-gray-400 text-base font-medium">/ 商务运营实习生</span></h4>
+                    <span class="text-gray-400 italic font-mono text-sm">2025.02 - 2025.06</span>
                 </div>
-
-                <div class="doodle-card rotate-[-1deg]">
-                    <div class="flex justify-between mb-6">
-                        <h4 class="text-lg font-bold text-slate-700 flex items-center">SharkNinja <span class="ml-2 text-gray-300 text-xs font-normal">/ 策略运营</span></h4>
-                        <span class="text-gray-400 text-xs italic font-mono">24.11 - 25.05</span>
-                    </div>
-                    <ul class="text-sm text-gray-600 space-y-4 ml-4 list-disc">
-                        <li>对接 TikTok 达人，投放精准度提升至 <span class="marker">58.6%</span>。</li>
-                    </ul>
+                <div class="content-font text-[15px] text-gray-600 space-y-4 leading-relaxed">
+                    <p>• <span class="font-bold">全链路履约优化</span>：建立并维护 <span class="marker">37 项配送异常追踪台账</span>，通过跨部门协作文档优化，成功缩短整体配送周期 <span class="marker">5.6%</span>。</p>
+                    <p>• <span class="font-bold">精细化策略打法</span>：主导 <span class="marker">3.2w+ 用户规模的 RFM 标签打标</span>，参与设计阶梯红包发放规则，使新客留存率显著提升 <span class="marker">6.2pp</span>。</p>
                 </div>
+                <div class="mt-8 flex flex-wrap"><span class="pink-tag">RFM 分层</span><span class="pink-tag">履约监控</span><span class="pink-tag">红包策略设计</span></div>
+            </div>
 
-                <div class="doodle-card">
-                    <div class="flex justify-between mb-6">
-                        <h4 class="text-lg font-bold text-slate-700 italic flex items-center">Perfects.AI <span class="ml-2 text-gray-300 text-xs font-normal">/ 用户运营</span></h4>
-                        <span class="text-gray-400 text-xs italic font-mono">24.06 - 24.08</span>
-                    </div>
-                    <p class="text-sm text-gray-600">负责画像清洗，定位转化断点，助力 <span class="marker">NPS 提升 12 分</span>。</p>
+            <div class="card">
+                <div class="flex flex-col md:flex-row justify-between mb-8">
+                    <h4 class="text-2xl font-bold content-font">SharkNinja <span class="text-gray-400 text-base font-medium">/ 策略运营实习生</span></h4>
+                    <span class="text-gray-400 italic font-mono text-sm">2024.11 - 2025.05</span>
+                </div>
+                <div class="content-font text-[15px] text-gray-600 space-y-4 leading-relaxed">
+                    <p>• <span class="font-bold">数据驱动投放</span>：负责 <span class="marker">10w+ 级用户数据</span> 监控，深度对接 TikTok 海外达人资源，动态修正投放逻辑。</p>
+                    <p>• <span class="font-bold">效能提升</span>：通过精细化人群画像筛选，将投放目标人群覆盖精准度从 48% 提升至 <span class="marker">58.6%</span>。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex flex-col md:flex-row justify-between mb-8">
+                    <h4 class="text-2xl font-bold content-font">Perfects.AI <span class="text-gray-400 text-base font-medium">/ 用户运营实习生</span></h4>
+                    <span class="text-gray-400 italic font-mono text-sm">2024.06 - 2024.08</span>
+                </div>
+                <div class="content-font text-[15px] text-gray-600 space-y-4 leading-relaxed">
+                    <p>• <span class="font-bold">用户路径诊断</span>：执行 <span class="marker">4 层用户画像清洗</span>，深度定位用户转化流失点，助力 NPS (净推荐值) <span class="marker">提升 12 分</span>。</p>
+                    <p>• <span class="font-bold">方法论资产化</span>：独立输出 <span class="marker">《分层-诊断-验证》标准化执行手册 (SOP)</span>，实现业务经验的闭环沉淀。</p>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="mb-24">
-            <div class="section-header">Core Projects</div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="doodle-card bg-slate-900 text-white border-none col-span-1 md:col-span-2">
-                    <div class="flex justify-between gap-6 mb-4">
-                        <h3 class="font-bold text-lg flex items-center">国家级项目：涉农数字化
-                            <span class="ml-4 px-3 py-1 rounded bg-pink-500 text-[10px] font-bold">#国家级项目</span>
-                        </h3>
+            <div class="section-header">Academic & Core Projects</div>
+            <div class="card light-card">
+                <div class="flex flex-col md:flex-row justify-between gap-12">
+                    <div class="md:w-3/5">
+                        <div class="inline-block px-3 py-1 rounded bg-pink-100 text-pink-500 text-[10px] font-black mb-6"># NATIONAL LEVEL RESEARCH</div>
+                        <h4 class="text-2xl font-bold content-font text-slate-700 mb-6">涉农企业数字化转型研究</h4>
+                        <p class="content-font text-sm text-gray-500 leading-relaxed mb-8">
+                            主导 200+ 家上市公司年报的 <span class="marker">NLP 文本挖掘</span> 与清洗。协助构建包含 <span class="font-bold text-slate-700">3 个维度、20+ 项评估指标</span> 的成熟度模型。
+                        </p>
+                        <div class="flex gap-4"><span class="pink-tag">Python NLP</span><span class="pink-tag">多维指标构建</span></div>
                     </div>
-                    <p class="text-sm text-gray-300 mb-6 leading-relaxed bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-                        负责年报 <span class="marker text-pink-500 font-bold">NLP 文本清洗</span> 与关键词提取，协助构建 <span class="marker text-pink-500 font-bold">3维 20+项指标体系</span>。
-                    </p>
-                    <div class="flex flex-wrap gap-2"><span class="pink-tag">NLP挖掘</span><span class="pink-tag">指标体系构建</span><span class="pink-tag">Python</span></div>
-                </div>
-
-                <div class="doodle-card">
-                    <h3 class="font-bold text-lg">“盈泰杯·宝洁”挑战赛</h3>
-                    <p class="text-sm text-gray-600 mt-4 leading-relaxed">
-                        基于 <span class="font-bold">RFM 分层</span> 设计私域流量转化链路，测试期社群转化率达 <span class="marker highlightHighlightMarkerHighlight">18.5%</span>。
-                    </p>
+                    <div class="md:w-2/5 flex flex-col justify-center items-center bg-white rounded-3xl border border-pink-50 p-10">
+                        <p class="text-4xl font-black text-pink-300">20+</p>
+                        <p class="text-[10px] text-gray-300 font-bold uppercase mt-3 tracking-widest">Indicators</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <footer class="py-20 text-center border-t border-pink-100">
-            <div class="mb-8 flex justify-center space-x-6">
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-pink-50 text-pink-300">📧</div>
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-pink-50 text-pink-300">💬</div>
-            </div>
-            <p class="text-sm font-bold text-gray-700 mb-2">zhangyating0319@163.com | 18805654621</p>
-            <p class="text-xs text-gray-400 italic">End of Digital Canvas. Hope to work with you.</p>
+        <footer class="py-16 text-center border-t border-pink-50">
+            <p class="content-font text-sm text-gray-400">zhangyating0319@163.com | 18805654621</p>
         </footer>
-
     </main>
 
 </body>
