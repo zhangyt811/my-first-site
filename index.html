@@ -9,54 +9,31 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
         :root { --primary-pink: #F8C8DC; --soft-pink-bg: #FFF5F8; --accent-pink: #FFD1DC; }
-        
         html { scroll-behavior: smooth; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAFAFA; color: #333; overflow-x: hidden; }
 
-        /* 左侧固定栏优化 */
         .sidebar { width: 300px; height: 100vh; position: fixed; left: 0; top: 0; background: #FFF; border-right: 1px solid #F3F4F6; z-index: 100; transition: all 0.3s; }
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link.active { color: #d17a9d; font-weight: 700; transform: translateX(5px); }
         .nav-link.active::before { content: ''; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); width: 4px; height: 15px; background: var(--primary-pink); border-radius: 2px; }
 
-        /* 主内容区 */
         .main-content { margin-left: 300px; padding: 60px 5%; max-width: 1100px; }
-
-        /* 卡片高级交互动画 */
         .glass-card { 
             background: #FFF; border-radius: 20px; padding: 30px; 
             box-shadow: 0 10px 30px rgba(248, 200, 220, 0.1); 
             margin-bottom: 25px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             border: 1px solid transparent;
         }
-        .glass-card:hover { 
-            transform: translateY(-8px) scale(1.01); 
-            box-shadow: 0 20px 40px rgba(248, 200, 220, 0.25);
-            border-color: var(--primary-pink);
-        }
+        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(248, 200, 220, 0.25); border-color: var(--primary-pink); }
 
-        /* 标签微动 */
-        .pink-tag { 
-            background: var(--soft-pink-bg); color: #d17a9d; 
-            padding: 4px 12px; border-radius: 8px; font-size: 13px; 
-            font-weight: 600; display: inline-block; margin: 4px; 
-            transition: 0.3s; 
-        }
+        .pink-tag { background: var(--soft-pink-bg); color: #d17a9d; padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; display: inline-block; margin: 4px; transition: 0.3s; }
         .pink-tag:hover { background: var(--primary-pink); color: white; transform: rotate(-2deg); }
 
-        /* 荧光高亮效果 */
         .marker {
             background: linear-gradient(100deg, rgba(248,200,220,0) 0%, rgba(248,200,220,0.8) 50%, rgba(248,200,220,0) 100%);
-            background-size: 200% 100%;
-            animation: highlight 3s infinite linear;
-            padding: 0 4px;
-            font-weight: 700;
+            background-size: 200% 100%; animation: highlight 3s infinite linear; padding: 0 4px; font-weight: 700;
         }
-
-        @keyframes highlight {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
-        }
+        @keyframes highlight { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
         .badge-national { background: linear-gradient(90deg, #FFD1DC, #F8C8DC); color: #FFF; padding: 2px 10px; border-radius: 4px; font-size: 10px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
 
@@ -65,25 +42,24 @@
 </head>
 <body>
 
-    <aside class="sidebar p-10 flex flex-col items-center">
+    <aside class="sidebar p-10 flex flex-col items-center text-center">
         <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--primary-pink)] shadow-lg mb-6 group cursor-pointer">
             <img src="https://via.placeholder.com/150" alt="Avatar" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
         </div>
         <h1 class="text-xl font-bold tracking-tight">张雅婷</h1>
-        <p class="text-xs text-gray-400 mt-2 mb-10 text-center leading-relaxed">吉林大学 · 硕士<br>2026 届毕业生</p>
+        <p class="text-xs text-gray-400 mt-2 mb-10">吉林大学 · 经济学硕士<br>2026 届毕业生</p>
         
         <nav id="sidebar-nav" class="w-full space-y-4">
-            <a href="#edu" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400 text-center">教育背景</a>
-            <a href="#intern" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400 text-center">实习经历</a>
-            <a href="#projects" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400 text-center">项目经历</a>
-            <a href="#organization" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400 text-center">社团组织</a>
-            <a href="#skills" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400 text-center">核心能力</a>
+            <a href="#edu" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400">教育背景</a>
+            <a href="#intern" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400">实习经历</a>
+            <a href="#projects" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400">项目经历</a>
+            <a href="#skills" class="nav-link block py-1 text-sm text-gray-500 hover:text-pink-400">核心能力</a>
         </nav>
     </aside>
 
     <main class="main-content">
         
-        <section id="edu" class="mb-16" data-aos="fade-up" data-aos-duration="800">
+        <section id="edu" class="mb-16" data-aos="fade-up">
             <h2 class="text-2xl font-bold mb-8 flex items-center">
                 <span class="w-2 h-8 bg-[var(--primary-pink)] mr-3 rounded-full"></span> 教育背景 Education
             </h2>
@@ -91,11 +67,11 @@
                 <div class="flex items-center space-x-6">
                     <div class="text-3xl animate-bounce">🎓</div>
                     <div>
-                        <h4 class="text-lg font-bold">吉林大学</h4>
-                        <p class="text-gray-500 text-sm">经济学 · 硕士学位</p>
+                        <h4 class="text-lg font-bold text-slate-800">吉林大学</h4>
+                        <p class="text-slate-500 text-sm italic">硕士学位 · 经济学 (研一在读)</p>
                     </div>
                 </div>
-                <div class="text-right text-gray-400 text-sm italic">2023.09 - 2026.06</div>
+                <div class="text-right text-slate-400 text-sm italic">2023.09 - 2026.06</div>
             </div>
         </section>
 
@@ -107,24 +83,34 @@
             <div class="space-y-8">
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex justify-between mb-4">
-                        <h4 class="text-lg font-bold text-pink-400 italic flex items-center">
-                            Shopee <span class="ml-2 text-gray-300 text-xs font-normal">/ 商务运营实习生</span>
-                        </h4>
+                        <h4 class="text-lg font-bold text-pink-400 italic">Shopee / 商务运营实习生</h4>
                         <span class="text-gray-400 text-xs italic">2025.02 - 2025.06</span>
                     </div>
-                    <ul class="text-sm text-gray-600 space-y-4 ml-4">
-                        <li class="relative pl-2">优化协作流程，缩短周期 <span class="marker">5.6%</span></li>
-                        <li class="relative pl-2">完成3.2万用户打标，提升留存 <span class="marker">6.2pp</span></li>
+                    <ul class="text-sm text-gray-600 space-y-4 list-disc ml-4">
+                        <li><b>履约流程优化：</b>记录 37 项问题台账，优化协作文档，缩短平均配送周期 <span class="marker">5.6%</span>。</li>
+                        <li><b>活动策略落地：</b>完成 3.2 万用户 RFM 标签打标，撰写红包规则，提升新客留存 <span class="marker">6.2pp</span>。</li>
                     </ul>
                 </div>
 
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex justify-between mb-4">
-                        <h4 class="text-lg font-bold text-gray-700">SharkNinja <span class="ml-2 text-gray-300 text-xs font-normal">/ 策略运营实习生</span></h4>
+                        <h4 class="text-lg font-bold text-slate-700">SharkNinja / 策略运营实习生</h4>
                         <span class="text-gray-400 text-xs italic">2024.11 - 2025.05</span>
                     </div>
-                    <ul class="text-sm text-gray-600 space-y-4 ml-4">
-                        <li>对接TikTok达人，投放精准度提升至 <span class="marker">58.6%</span></li>
+                    <ul class="text-sm text-gray-600 space-y-4 list-disc ml-4">
+                        <li><b>渠道资源对接：</b>高效对接 TikTok 达人合作，通过精准排期确保资源零延期交付。</li>
+                        <li><b>效果数据分析：</b>负责 10 万级用户数据监控，投放精准度由 48% 提升至 <span class="marker">58.6%</span>。</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between mb-4">
+                        <h4 class="text-lg font-bold text-slate-700 italic">Perfects.AI / 用户运营实习生</h4>
+                        <span class="text-gray-400 text-xs italic">2024.06 - 2024.08</span>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-4 list-disc ml-4">
+                        <li><b>分层诊断：</b>负责 4 层用户画像清洗，定位新手引导中断断点，方案落地后次月 <span class="marker">NPS 提升 12 分</span>。</li>
+                        <li><b>框架输出：</b>总结“分层-诊断-验证”执行框架供团队参考，显著提升协作效率。</li>
                     </ul>
                 </div>
             </div>
@@ -135,15 +121,25 @@
                 <span class="w-2 h-8 bg-[var(--primary-pink)] mr-3 rounded-full"></span> 项目经历 Projects
             </h2>
             
-            <div class="glass-card border-l-4 border-pink-200" data-aos="zoom-in-up">
-                <h3 class="font-bold flex items-center text-lg">
-                    国家级科研项目：涉农企业数字化转型
-                    <span class="badge-national animate-pulse">国家级项目</span>
-                </h3>
-                <p class="text-xs text-pink-300 mt-2 font-bold uppercase tracking-widest">Python｜NLP文本挖掘｜指标体系</p>
-                <p class="text-sm text-gray-500 mt-4 leading-relaxed bg-slate-50 p-4 rounded-lg">
-                    负责200+家企业年报文本清洗，协助构建3维评估指标体系。
-                </p>
+            <div class="space-y-8">
+                <div class="glass-card border-l-4 border-pink-200" data-aos="zoom-in-up">
+                    <h3 class="font-bold flex items-center text-lg text-slate-800">
+                        国家级科研项目：涉农企业数字化转型研究
+                        <span class="badge-national animate-pulse">国家级</span>
+                    </h3>
+                    <p class="text-[10px] text-pink-400 mt-2 font-bold uppercase tracking-widest">Python｜NLP文本挖掘｜指标体系构建</p>
+                    <p class="text-sm text-gray-500 mt-4 leading-relaxed bg-slate-50/50 p-4 rounded-lg italic">
+                        负责 200+ 家 A 股企业年报 NLP 文本清洗，协助构建 3 维 20+ 项评估指标体系，输出 2 份核心业务简报。
+                    </p>
+                </div>
+
+                <div class="glass-card border-l-4 border-slate-200" data-aos="zoom-in-up">
+                    <h3 class="font-bold text-lg text-slate-800">“盈泰杯·宝洁”商业挑战赛</h3>
+                    <p class="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-widest">RFM分层 | 私域运营 SOP | 转化链路设计</p>
+                    <p class="text-sm text-gray-600 mt-4 leading-relaxed">
+                        设计“内容引流→私域沉淀→分层转化”路径，验证期社群转化率达 <span class="marker">18.5%</span>，独立输出《私域活动执行手册》。
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -153,66 +149,46 @@
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass-card">
-                    <h3 class="font-bold text-gray-700 mb-6 text-sm flex items-center">
-                        <span class="mr-2 text-pink-300">🛠</span> 运营工具链
-                    </h3>
+                    <h3 class="font-bold text-gray-700 mb-6 text-sm flex items-center">🛠 运营工具链</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="pink-tag">SQL / Python</span>
-                        <span class="pink-tag">Excel 函数/透视表</span>
-                        <span class="pink-tag">PS / Canva / 剪映</span>
+                        <span class="pink-tag">SQL / Python</span> <span class="pink-tag">Excel / 数据可视化</span> <span class="pink-tag">PS / 秀米排版</span>
                     </div>
                 </div>
                 <div class="glass-card">
-                    <h3 class="font-bold text-gray-700 mb-6 text-sm flex items-center">
-                        <span class="mr-2 text-pink-300">🧠</span> 运营思维
-                    </h3>
+                    <h3 class="font-bold text-gray-700 mb-6 text-sm flex items-center">🧠 运营思维</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="pink-tag">用户画像拆解</span>
-                        <span class="pink-tag">活动闭环设计</span>
-                        <span class="pink-tag">私域转化链路</span>
+                        <span class="pink-tag">用户分层运营</span> <span class="pink-tag">增长黑客逻辑</span> <span class="pink-tag">私域 SOP 沉淀</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <footer id="contact" class="py-20 border-t border-pink-100 text-center">
-            <div class="mb-8 flex justify-center space-x-6">
-                <a href="mailto:zhangyating0319@163.com" class="hover:scale-110 transition duration-300 bg-white p-3 rounded-full shadow-sm border border-pink-50">📧</a>
-                <a href="#" class="hover:scale-110 transition duration-300 bg-white p-3 rounded-full shadow-sm border border-pink-50">💬</a>
+            <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest font-bold">Contact Details</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-sm font-bold text-slate-700">
+                <a href="mailto:zhangyating0319@163.com" class="hover:text-pink-400 underline decoration-pink-200">Email: zhangyating0319@163.com</a>
+                <span class="hidden md:block text-slate-200">|</span>
+                <span>WeChat: 18805654621</span>
             </div>
-            <p class="text-sm font-bold text-gray-700 mb-2">zhangyating0319@163.com</p>
-            <p class="text-xs text-gray-400 italic">© 2026 张雅婷. Built with Love & Code.</p>
+            <p class="mt-12 text-[10px] text-gray-300 italic uppercase">© 2026 YATING ZHANG. ALL RIGHTS RESERVED.</p>
         </footer>
 
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 初始化动画
-        AOS.init({ 
-            duration: 1000,
-            once: false, // 向上滚动时也会重复触发动画，保持动感
-            offset: 100
-        });
-
-        // 导航栏滚动监听 (ScrollSpy)
+        AOS.init({ duration: 1000, once: false, offset: 100 });
+        
         window.addEventListener('scroll', () => {
             let current = "";
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-link");
-
             sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 120) {
-                    current = section.getAttribute("id");
-                }
+                if (pageYOffset >= section.offsetTop - 150) { current = section.getAttribute("id"); }
             });
-
             navLinks.forEach((link) => {
                 link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
-                }
+                if (link.getAttribute("href").includes(current)) { link.classList.add("active"); }
             });
         });
     </script>
